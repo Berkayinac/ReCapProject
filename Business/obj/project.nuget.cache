@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4JrizQy5EpIHxitEMn1rSaSN0tqCVL9IMFPKhCQps/ssbxlOcADacDq1OUcO2dEa3Z+YRhI8Ndk872U2UTNudg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sun\\source\\repos\\ReCapProject\\Business\\Business.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sun\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\sun\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
