@@ -1,5 +1,7 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Abstract;
 using Entities.Concrete;
@@ -11,16 +13,56 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ICarDal carDal = new InMemoryCarDal();
-            CarManager carManager = new CarManager(carDal);
-            Car car = new Car { CarId = , BrandId = 1, ColorId = 1, DailyPrice = 1451234, Description = "M4 Serisi", ModelYear = new DateTime(2010,1,20) };
-            Car car1 = new Car { CarId = 1, BrandId = 1, ColorId = 1, DailyPrice = 1521497, ModelYear = new DateTime(2015, 12, 10), Description = "M235i xDrive" };
-            carManager.Add(car);
-            foreach (var c in carManager.GetAll())
+            ICarService carManager = new CarManager(new EfCarDal(),new BusinessRulesManager());
+            IColorService colorManager = new ColorManager(new EfColorDal());
+            IBrandService brandManager = new BrandManager(new EfBrandDal());
+
+            Console.WriteLine("---------------GetAll----------------");
+
+            Console.WriteLine("---------------GetAllCars----------------");
+            foreach (var car in carManager.GetAll())
             {
-                Console.WriteLine(c.Description);
+                Console.WriteLine(car.Description);
             }
 
+            Console.WriteLine("---------------GetAllColors----------------");
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorName);
+            }
+
+            Console.WriteLine("---------------GetAllBrands----------------");
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
+            }
+
+
+            Console.WriteLine("--------------GetCarsByBrandId-----------------");
+
+            foreach (var car in carManager.GetCarsByBrandId(15))
+            {
+                Console.WriteLine(car.Description);
+            }
+
+            Console.WriteLine("---------------GetCarsByColorId----------------");
+
+            foreach (var car in carManager.GetCarsByColorId(3))
+            {
+                Console.WriteLine(car.Description);
+            }
+
+            Console.WriteLine("---------------Yeni bir araba ekleme----------------");
+
+            Car car1 = new Car() { BrandId = 1, ColorId = 3, DailyPrice = 20, Description = "KXL", ModelYear = new DateTime(2020, 12, 10 ) };
+
+            carManager.Add(car1);
+
+            Console.WriteLine("---------------GetAllCars----------------");
+            foreach (var car in carManager.GetAll())
+            {
+                Console.WriteLine(car.Description);
+            }
         }
     }
 }
