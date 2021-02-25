@@ -26,7 +26,7 @@ namespace Business.Concrete
             _colorDal.Delete(color);
         }
 
-        public Color Get(int id)
+        public Color GetById(int id)
         {
             return _colorDal.Get(c => c.ColorId == id);
         }

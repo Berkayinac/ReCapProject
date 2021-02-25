@@ -7,3 +7,6 @@ C:\Users\sun\source\repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entitie
 C:\Users\sun\source\repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.csproj.CoreCompileInputs.cache
 C:\Users\sun\source\repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.dll
 C:\Users\sun\source\repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.pdb
+C:\Users\sun\source\repos\ReCapProject\Entities\bin\Debug\netstandard2.0\Core.dll
+C:\Users\sun\source\repos\ReCapProject\Entities\bin\Debug\netstandard2.0\Core.pdb
+C:\Users\sun\source\repos\ReCapProject\Entities\obj\Debug\netstandard2.0\Entities.csproj.CopyComplete

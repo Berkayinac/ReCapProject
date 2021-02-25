@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,11 @@ namespace DataAccess.Concrete.InMemory
 
             cars = new List<Car>
             {
-                new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=1521497,ModelYear=new DateTime(2015,12,10),Description="M235i xDrive"},
-                new Car{CarId=2,BrandId=1,ColorId=3,DailyPrice=2051252,ModelYear=new DateTime(2017,3,21),Description="M5 xDrive Sedan"},
-                new Car{CarId=3,BrandId=1,ColorId=2,DailyPrice=1862960,ModelYear=new DateTime(2018,1,28),Description="M8 Cabrio xDrive"},
-                new Car{CarId=4,BrandId=2,ColorId=2,DailyPrice=1679231,ModelYear=new DateTime(2019,6,3),Description="A4 Sedan"},
-                new Car{CarId=5,BrandId=2,ColorId=1,DailyPrice=1432187,ModelYear=new DateTime(2016,8,13),Description="A6 Avant"},
+                new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=1521,ModelYear="2015",Description="M235i xDrive"},
+                new Car{CarId=2,BrandId=1,ColorId=3,DailyPrice=2051,ModelYear="2016",Description="M5 xDrive Sedan"},
+                new Car{CarId=3,BrandId=1,ColorId=2,DailyPrice=1862,ModelYear="2017",Description="M8 Cabrio xDrive"},
+                new Car{CarId=4,BrandId=2,ColorId=2,DailyPrice=1679,ModelYear="2016",Description="A4 Sedan"},
+                new Car{CarId=5,BrandId=2,ColorId=1,DailyPrice=1432,ModelYear="2014",Description="A6 Avant"},
             };
         }
 
@@ -62,6 +63,16 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetByDtoList(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDto> GetByDtoList()
         {
             throw new NotImplementedException();
         }
