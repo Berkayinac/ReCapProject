@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,25 +10,34 @@ namespace Business.Concrete
 {
     public class BusinessRulesManager : IBusinessRules
     {
-        public void NameRule(Car car)
+        public IResult CarRented(Rental rental)
         {
-            if (car.Description.Length <2)
+            if (rental.ReturnDate != new DateTime(default))
             {
-                throw new Exception("Araç ismi minimum 2 karakterden oluşmalıdır.");
+                return new SuccessResult();
+            }
+            else
+            {
+                return new ErrorResult();
             }
         }
 
-        public void PriceRule(Car car)
+        public IResult NameRule(Car car)
         {
-            if (car.DailyPrice > 0)
+            if (car.Description.Length <2)
             {
-                Console.WriteLine("Aracınız Eklenmiştir.");
+                return new ErrorResult(Messages.NameRull);
             }
+            return new SuccessResult();
+        }
 
-            else
+        public IResult PriceRule(Car car)
+        { 
+            if (car.DailyPrice < 0)
             {
-                throw new Exception("Araçın günlük fiyatı 0'dan büyük olmalıdır.");
+               return new ErrorResult(Messages.PriceRull);
             }
+            return new SuccessResult();
         }
     }
 }
