@@ -71,7 +71,8 @@ namespace ConsoleUI
             //CustomerUpdateTest(customerManager, updateCustomer, 12);
             //GetAllCustomers(customerManager);
 
-            //rentalManager.Add(addRental);
+            rentalManager.Add(addRental);
+           
             //RentalDeleteTest(rentalManager);
             //RentalUpdateTest(rentalManager, updateRental);
             //GetAllRentals(rentalManager);
@@ -86,6 +87,8 @@ namespace ConsoleUI
             {
                 Console.WriteLine("{0}{1}{2}{3}{4}", userDto.FirstName, userDto.LastName, userDto.CompanyName, userDto.Email, userDto.Password);
             }
+            
+            
         }
 
         private static void GetAllRentals(IRentalService rentalManager)
@@ -105,6 +108,8 @@ namespace ConsoleUI
             updatedResult.RentDate = updateRental.RentDate;
             updatedResult.ReturnDate = updateRental.ReturnDate;
             rentalManager.Update(updatedResult);
+            Console.WriteLine((rentalManager.Update(updatedResult).Message));
+            
         }
 
         private static void RentalDeleteTest(IRentalService rentalManager)

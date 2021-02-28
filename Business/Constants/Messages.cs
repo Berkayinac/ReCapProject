@@ -60,5 +60,6 @@ namespace Business.Constants
         // ------------------------------------------------------------------------------------------
         public static string NameRull = "Araç ismi minimum 2 karakterden oluşmalıdır.";
         public static string PriceRull = "Araçın günlük fiyatı 0'dan büyük olmalıdır.";
+        public static string MaintenanceTime = "Bakim";
     }
 }
