@@ -12,17 +12,14 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        IBusinessRules _businessRules;
 
-        public RentalManager(IRentalDal rentalDal, IBusinessRules businessRules)
+        public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
-            _businessRules = businessRules;
         }
 
         public IResult Add(Rental rental)
         {
-            _businessRules.CarRented(rental);
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }

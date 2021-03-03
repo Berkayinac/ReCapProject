@@ -13,13 +13,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ICarService carManager = new CarManager(new EfCarDal(), new BusinessRulesManager());
+            ICarService carManager = new CarManager(new EfCarDal());
             IColorService colorManager = new ColorManager(new EfColorDal());
             IBrandService brandManager = new BrandManager(new EfBrandDal());
 
             IUserService userManager = new UserManager(new EfUserDal());
             ICustomerService customerManager = new CustomerManager(new EfCustomerDal());
-            IRentalService rentalManager = new RentalManager(new EfRentalDal(), new BusinessRulesManager());
+            IRentalService rentalManager = new RentalManager(new EfRentalDal());
 
 
             Car addEntity = new Car() { BrandId = 1, ColorId = 3, DailyPrice = 20, Description = "KXL", ModelYear = "2020" };
