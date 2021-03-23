@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Core.Aspects.Validation.Autofac
+namespace Core.Aspects.Autofac.Validation.Autofac
 {
     public class ValidationAspect : MethodInterception
     {
@@ -22,7 +22,7 @@ namespace Core.Aspects.Validation.Autofac
             _validatorType = validatorType;
         }
 
-        public override void OnBefore(IInvocation invocation)
+        protected override void OnBefore(IInvocation invocation)
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];

@@ -77,6 +77,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<CarDto> GetByDtoList(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public Car GetById(int id)
         {
             var entity = cars.SingleOrDefault(c => c.CarId == id);

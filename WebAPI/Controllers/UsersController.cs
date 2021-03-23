@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,17 +25,6 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _userService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int userId)
-        {
-            var result = _userService.GetById(userId);
             if (result.Success)
             {
                 return Ok(result);

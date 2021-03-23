@@ -1,8 +1,11 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Validation.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation.Autofac;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,15 +19,21 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        IBrandService _brandService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, IBrandService brandService)
         {
             _carDal = carDal;
+            _brandService = brandService;
         }
 
+        [SecuredOperation("product.add,admin,editor")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
+            BusinessRules.Run(CheckIfCarNameExist(car.Description, car.BrandId), CheckIfBrandLimitExceded());
+
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
@@ -36,6 +45,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==22)
@@ -60,6 +70,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId),Messages.CarsByColorsListed);
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDto>> GetCarsByDto()
         {
             return new SuccessDataResult<List<CarDto>>(_carDal.GetByDtoList(),Messages.CarDtoListed);
@@ -70,6 +81,32 @@ namespace Business.Concrete
             // iş kuralları
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
+        }
+
+        private IResult CheckIfCarNameExist(string description,int brandId)
+        {
+            var carBrand=_brandService.GetById(brandId);
+            var carDescription =_carDal.Get(c => c.Description == description);
+
+            if (carBrand == null && carDescription == null)
+            {
+                return new SuccessResult();
+            }
+            else if (carDescription == null)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult(Messages.CarAlreadyExist);
+        }
+
+        private IResult CheckIfBrandLimitExceded()
+        {
+            var result = _brandService.GetAll().Data.Count;
+            if (result >=10)
+            {
+                return new ErrorResult(Messages.BrandLimitExceded);
+            }
+            return new SuccessResult();
         }
     }
 }
