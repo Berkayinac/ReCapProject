@@ -3,7 +3,9 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
-using Core.Aspects.Autofac.Validation.Autofac;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Performance;
+using Core.CrossCuttingConcerns.Transaction;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities;
 using Core.Utilities.Results;
@@ -71,6 +73,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(8)]
         public IDataResult<List<CarDto>> GetCarsByDto()
         {
             return new SuccessDataResult<List<CarDto>>(_carDal.GetByDtoList(),Messages.CarDtoListed);
@@ -107,6 +110,12 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.BrandLimitExceded);
             }
             return new SuccessResult();
+        }
+
+        //[TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            throw new NotImplementedException();
         }
     }
 }
