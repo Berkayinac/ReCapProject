@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetById(int id)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id), Messages.BrandGet);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id), Messages.BrandGet);
         }
 
         public IDataResult<List<Brand>> GetAll()
@@ -48,7 +48,7 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetByName(string name)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandName == name));
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Name == name));
         }
     }
 }

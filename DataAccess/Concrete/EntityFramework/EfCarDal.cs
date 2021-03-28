@@ -19,10 +19,10 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
-                             select new CarDto { CarId = c.CarId, BrandName = b.BrandName, CarDescription = c.Description, ColorName = co.ColorName, DailyPrice = c.DailyPrice };
+                             on c.ColorId equals co.Id
+                             select new CarDto { CarId = c.CarId, BrandName = b.Name, CarDescription = c.Description, ColorName = co.Name, DailyPrice = c.DailyPrice };
 
                 return result.ToList();
             }
@@ -34,10 +34,10 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
-                             select new CarDto { CarId = c.CarId, BrandName = b.BrandName, CarDescription = c.Description, ColorName = co.ColorName, DailyPrice = c.DailyPrice };
+                             on c.ColorId equals co.Id
+                             select new CarDto { CarId = c.CarId, BrandName = b.Name, CarDescription = c.Description, ColorName = co.Name, DailyPrice = c.DailyPrice };
 
                 return result.ToList();
             }

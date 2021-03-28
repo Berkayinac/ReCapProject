@@ -20,15 +20,15 @@ namespace DataAccess.Concrete.InMemory
         {
             colors = new List<Color>
             {
-                new Color{ColorId=1,ColorName="Siyah"},
-                new Color{ColorId=2,ColorName="Beyaz"},
-                new Color{ColorId=3,ColorName="Gri"}
+                new Color{Id=1,Name="Siyah"},
+                new Color{Id=2,Name="Beyaz"},
+                new Color{Id=3,Name="Gri"}
             };
 
             brands = new List<Brand>
             {
-                new Brand{BrandId =1, BrandName="BMW"},
-                new Brand{BrandId =2, BrandName="Audı"},
+                new Brand{Id =1, Name="BMW"},
+                new Brand{Id =2, Name="Audı"},
             };
 
             cars = new List<Car>
